@@ -1,0 +1,32 @@
+﻿<Window x:Class="PagedItemsControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:PagedItemsControl.ViewModels"
+        xmlns:controls="clr-namespace:PagedItemsControl.Controls"
+        Title="MainWindow" Height="400" Width="750">
+    <Window.DataContext>
+        <vm:TestItemsViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <controls:AnagramPagedItemsControl PagedCollection="{Binding Models}">
+            <controls:AnagramPagedItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel LastChildFill="True">
+                        <TextBlock Text="{Binding Index}"/>
+                        <TextBlock Text="{Binding Name}"
+                                   Margin="12,0,0,0"/>
+                    </DockPanel>
+                </DataTemplate>
+            </controls:AnagramPagedItemsControl.ItemTemplate>
+        </controls:AnagramPagedItemsControl>
+        
+        <Button Grid.Row="1"
+                Content="Open New Window"
+                Click="OpenNewWindow_Clicked"/>
+    </Grid>
+</Window>
